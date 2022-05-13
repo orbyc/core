@@ -1,0 +1,5 @@
+*.go
+/.vscode
+/go.mod
+/go.sum
+/Makefile
