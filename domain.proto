@@ -1,0 +1,68 @@
+syntax = "proto3";
+package core;
+option go_package = "github.com/orbyc/core";
+
+/* ERC256 */ 
+message Asset {
+    // asset unique identifier
+    uint64 id = 1;
+    // asset owner
+    string owner = 2;
+    // asset issuer
+    string issuer = 3;
+    // co2 emission (maybe on creation)
+    uint64 co2e = 4;
+    // creation co2 emission certificate
+    uint64 certId = 5;
+    // asset metadata
+    string metadata = 10;
+}
+
+message AssetCertificates {
+    // asset certificates
+    repeated uint64 certificates = 1;
+}
+
+message AssetComposition {
+    // asset parents
+    repeated uint64 assets = 1;
+    // asset portions
+    repeated uint32 portions = 2;
+}
+
+message AssetTraceability {
+    // asset movements
+    repeated uint64 movements = 1;
+    // latitudes
+    repeated string latitudes = 2;
+    // longitudes
+    repeated string longitudes = 3;
+}
+
+message Certificate {
+    // certificate unique identifier
+    uint64 id = 1;
+    // certificate issuer
+    string issuer = 2;
+    // certificate metadata
+    string metadata = 3;
+}
+
+message Movement {
+    // movement unique identifier
+    uint64 id = 1;
+    // movement issuer id
+    string issuer = 2;
+    // latitude
+    string lat = 3;
+    // longitude
+    string lng = 4;
+    // co2 emission
+    uint64 co2e = 5;
+    // co2 emission certificate
+    uint64 certId = 6;
+    // movement metadata
+    string metadata = 7;
+}
+
+/* ERC423 */ 
