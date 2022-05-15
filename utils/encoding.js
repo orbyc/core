@@ -1,9 +1,9 @@
 import { Buffer } from "buffer";
 
-export function encodeHex(data: Uint8Array): string {
+export function encodeHex(data) {
     return Buffer.from(data).toString("hex")
 }
 
-export function decodeHex(encoded: string): Uint8Array {
+export function decodeHex(encoded) {
     return Uint8Array.from(Buffer.from(encoded, "hex"))
 }
