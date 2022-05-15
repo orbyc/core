@@ -1,12 +1,13 @@
 {
   "name": "orbyc-core",
-  "version": "1.0.4",
+  "version": "1.1.0",
   "description": "",
   "scripts": {},
   "keywords": [],
   "author": "Amaury Diaz",
   "license": "ISC",
   "dependencies": {
+    "buffer": "^6.0.3",
     "ts-protoc-gen": "^0.15.0"
   }
 }

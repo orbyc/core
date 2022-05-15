@@ -1,0 +1,60 @@
+syntax = "proto3";
+package core;
+option go_package = "github.com/orbyc/core";
+
+message Image {
+    string name = 1;
+    string attachment = 2;
+}
+
+message Link {
+    string name = 1;
+    string icon = 2;
+    string url = 3;
+}
+
+message AssetMetadata {
+    message Property {
+        string name = 1;
+        string value = 2;
+        string icon = 3;
+    }
+    string name = 1;
+    string header = 2;
+    string description = 3;
+    Image background = 4;
+    repeated Image images = 5;
+    repeated Link links = 6;
+    repeated Property properties = 7;
+}
+
+message CertificateMetadata {
+    uint64 date = 1;
+    string url = 2;
+    string attachment = 3;
+}
+
+message MovementMetadata {
+    enum Transport {
+        CREATE = 0;
+        AIR = 1;
+        SEA = 2;
+        LAND = 3;
+    }
+    string city = 1;
+    string start_date = 2;
+    string end_date = 3;
+    uint32 distance = 4;
+    Transport type = 5;
+}
+
+message AccountMetadata {
+    string name = 1;
+    string description = 2;
+    Image logo = 3;
+    repeated Link links = 4;
+}
+
+message RoleMetadata {
+    string info = 1;
+}
