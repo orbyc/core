@@ -1367,7 +1367,7 @@ proto.core.MovementMetadata.prototype.toObject = function(opt_includeInstance) {
  */
 proto.core.MovementMetadata.toObject = function(includeInstance, msg) {
   var f, obj = {
-    countryIso3: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    countryIso2: jspb.Message.getFieldWithDefault(msg, 1, ""),
     city: jspb.Message.getFieldWithDefault(msg, 2, ""),
     startDate: jspb.Message.getFieldWithDefault(msg, 3, ""),
     endDate: jspb.Message.getFieldWithDefault(msg, 4, ""),
@@ -1411,7 +1411,7 @@ proto.core.MovementMetadata.deserializeBinaryFromReader = function(msg, reader) 
     switch (field) {
     case 1:
       var value = /** @type {string} */ (reader.readString());
-      msg.setCountryIso3(value);
+      msg.setCountryIso2(value);
       break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
@@ -1462,7 +1462,7 @@ proto.core.MovementMetadata.prototype.serializeBinary = function() {
  */
 proto.core.MovementMetadata.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getCountryIso3();
+  f = message.getCountryIso2();
   if (f.length > 0) {
     writer.writeString(
       1,
@@ -1518,10 +1518,10 @@ proto.core.MovementMetadata.Transport = {
 };
 
 /**
- * optional string country_iso3 = 1;
+ * optional string country_iso2 = 1;
  * @return {string}
  */
-proto.core.MovementMetadata.prototype.getCountryIso3 = function() {
+proto.core.MovementMetadata.prototype.getCountryIso2 = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
@@ -1530,7 +1530,7 @@ proto.core.MovementMetadata.prototype.getCountryIso3 = function() {
  * @param {string} value
  * @return {!proto.core.MovementMetadata} returns this
  */
-proto.core.MovementMetadata.prototype.setCountryIso3 = function(value) {
+proto.core.MovementMetadata.prototype.setCountryIso2 = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
 };
 
