@@ -2,34 +2,31 @@ syntax = "proto3";
 package core;
 option go_package = "github.com/orbyc/core";
 
-message Image {
-    string name = 1;
-    string attachment = 2;
-}
+import "google/protobuf/timestamp.proto";
 
-message Link {
-    string name = 1;
-    string icon = 2;
-    string url = 3;
-}
-
+/* METADATA */ 
 message AssetMetadata {
     message Property {
         string name = 1;
         string value = 2;
         string icon = 3;
     }
+
     string name = 1;
-    string header = 2;
-    string description = 3;
+    Location creation = 2;
+    
+    string header = 3;
     Image background = 4;
-    repeated Image images = 5;
-    repeated Link links = 6;
-    repeated Property properties = 7;
+    
+    string description = 5;
+    repeated Image images = 6;
+    repeated Link links = 7;
+    repeated Property properties = 8;
+
 }
 
 message CertificateMetadata {
-    uint64 date = 1;
+    google.protobuf.Timestamp date = 1;
     string url = 2;
     string attachment = 3;
 }
@@ -41,11 +38,10 @@ message MovementMetadata {
         SEA = 2;
         LAND = 3;
     }
-    string country_iso2 = 1;
-    string city = 2;
-    string start_date = 3;
-    string end_date = 4;
-    uint32 distance = 5;
+
+    Location location = 1;
+    google.protobuf.Timestamp duration = 4;
+    uint64 distance = 5;
     Transport type = 6;
 }
 
@@ -58,4 +54,24 @@ message AccountMetadata {
 
 message RoleMetadata {
     string info = 1;
+}
+
+/* UTILS */ 
+message Image {
+    string name = 1;
+    string attachment = 2;
+}
+
+message Link {
+    string name = 1;
+    string icon = 2;
+    string url = 3;
+}
+
+message Location {
+    string lat = 1;
+    string lng = 2;
+    string country_iso2 = 3;
+    string location = 4;
+    google.protobuf.Timestamp date = 5;
 }

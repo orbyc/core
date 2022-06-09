@@ -33,10 +33,6 @@ message AssetComposition {
 message AssetTraceability {
     // asset movements
     repeated uint64 movements = 1;
-    // latitudes
-    repeated string latitudes = 2;
-    // longitudes
-    repeated string longitudes = 3;
 }
 
 message Certificate {
@@ -53,10 +49,6 @@ message Movement {
     uint64 id = 1;
     // movement issuer id
     string issuer = 2;
-    // latitude
-    string lat = 3;
-    // longitude
-    string lng = 4;
     // co2 emission
     uint64 co2e = 5;
     // co2 emission certificate

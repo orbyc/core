@@ -99,16 +99,6 @@ export class AssetTraceability extends jspb.Message {
   setMovementsList(value: Array<number>): void;
   addMovements(value: number, index?: number): number;
 
-  clearLatitudesList(): void;
-  getLatitudesList(): Array<string>;
-  setLatitudesList(value: Array<string>): void;
-  addLatitudes(value: string, index?: number): string;
-
-  clearLongitudesList(): void;
-  getLongitudesList(): Array<string>;
-  setLongitudesList(value: Array<string>): void;
-  addLongitudes(value: string, index?: number): string;
-
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): AssetTraceability.AsObject;
   static toObject(includeInstance: boolean, msg: AssetTraceability): AssetTraceability.AsObject;
@@ -122,8 +112,6 @@ export class AssetTraceability extends jspb.Message {
 export namespace AssetTraceability {
   export type AsObject = {
     movementsList: Array<number>,
-    latitudesList: Array<string>,
-    longitudesList: Array<string>,
   }
 }
 
@@ -162,12 +150,6 @@ export class Movement extends jspb.Message {
   getIssuer(): string;
   setIssuer(value: string): void;
 
-  getLat(): string;
-  setLat(value: string): void;
-
-  getLng(): string;
-  setLng(value: string): void;
-
   getCo2e(): number;
   setCo2e(value: number): void;
 
@@ -191,8 +173,6 @@ export namespace Movement {
   export type AsObject = {
     id: number,
     issuer: string,
-    lat: string,
-    lng: string,
     co2e: number,
     certid: number,
     metadata: string,

@@ -806,7 +806,7 @@ proto.core.AssetComposition.prototype.clearPortionsList = function() {
  * @private {!Array<number>}
  * @const
  */
-proto.core.AssetTraceability.repeatedFields_ = [1,2,3];
+proto.core.AssetTraceability.repeatedFields_ = [1];
 
 
 
@@ -839,9 +839,7 @@ proto.core.AssetTraceability.prototype.toObject = function(opt_includeInstance) 
  */
 proto.core.AssetTraceability.toObject = function(includeInstance, msg) {
   var f, obj = {
-    movementsList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f,
-    latitudesList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f,
-    longitudesList: (f = jspb.Message.getRepeatedField(msg, 3)) == null ? undefined : f
+    movementsList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -884,14 +882,6 @@ proto.core.AssetTraceability.deserializeBinaryFromReader = function(msg, reader)
         msg.addMovements(values[i]);
       }
       break;
-    case 2:
-      var value = /** @type {string} */ (reader.readString());
-      msg.addLatitudes(value);
-      break;
-    case 3:
-      var value = /** @type {string} */ (reader.readString());
-      msg.addLongitudes(value);
-      break;
     default:
       reader.skipField();
       break;
@@ -925,20 +915,6 @@ proto.core.AssetTraceability.serializeBinaryToWriter = function(message, writer)
   if (f.length > 0) {
     writer.writePackedUint64(
       1,
-      f
-    );
-  }
-  f = message.getLatitudesList();
-  if (f.length > 0) {
-    writer.writeRepeatedString(
-      2,
-      f
-    );
-  }
-  f = message.getLongitudesList();
-  if (f.length > 0) {
-    writer.writeRepeatedString(
-      3,
       f
     );
   }
@@ -979,80 +955,6 @@ proto.core.AssetTraceability.prototype.addMovements = function(value, opt_index)
  */
 proto.core.AssetTraceability.prototype.clearMovementsList = function() {
   return this.setMovementsList([]);
-};
-
-
-/**
- * repeated string latitudes = 2;
- * @return {!Array<string>}
- */
-proto.core.AssetTraceability.prototype.getLatitudesList = function() {
-  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 2));
-};
-
-
-/**
- * @param {!Array<string>} value
- * @return {!proto.core.AssetTraceability} returns this
- */
-proto.core.AssetTraceability.prototype.setLatitudesList = function(value) {
-  return jspb.Message.setField(this, 2, value || []);
-};
-
-
-/**
- * @param {string} value
- * @param {number=} opt_index
- * @return {!proto.core.AssetTraceability} returns this
- */
-proto.core.AssetTraceability.prototype.addLatitudes = function(value, opt_index) {
-  return jspb.Message.addToRepeatedField(this, 2, value, opt_index);
-};
-
-
-/**
- * Clears the list making it empty but non-null.
- * @return {!proto.core.AssetTraceability} returns this
- */
-proto.core.AssetTraceability.prototype.clearLatitudesList = function() {
-  return this.setLatitudesList([]);
-};
-
-
-/**
- * repeated string longitudes = 3;
- * @return {!Array<string>}
- */
-proto.core.AssetTraceability.prototype.getLongitudesList = function() {
-  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 3));
-};
-
-
-/**
- * @param {!Array<string>} value
- * @return {!proto.core.AssetTraceability} returns this
- */
-proto.core.AssetTraceability.prototype.setLongitudesList = function(value) {
-  return jspb.Message.setField(this, 3, value || []);
-};
-
-
-/**
- * @param {string} value
- * @param {number=} opt_index
- * @return {!proto.core.AssetTraceability} returns this
- */
-proto.core.AssetTraceability.prototype.addLongitudes = function(value, opt_index) {
-  return jspb.Message.addToRepeatedField(this, 3, value, opt_index);
-};
-
-
-/**
- * Clears the list making it empty but non-null.
- * @return {!proto.core.AssetTraceability} returns this
- */
-proto.core.AssetTraceability.prototype.clearLongitudesList = function() {
-  return this.setLongitudesList([]);
 };
 
 
@@ -1280,8 +1182,6 @@ proto.core.Movement.toObject = function(includeInstance, msg) {
   var f, obj = {
     id: jspb.Message.getFieldWithDefault(msg, 1, 0),
     issuer: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    lat: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    lng: jspb.Message.getFieldWithDefault(msg, 4, ""),
     co2e: jspb.Message.getFieldWithDefault(msg, 5, 0),
     certid: jspb.Message.getFieldWithDefault(msg, 6, 0),
     metadata: jspb.Message.getFieldWithDefault(msg, 7, "")
@@ -1328,14 +1228,6 @@ proto.core.Movement.deserializeBinaryFromReader = function(msg, reader) {
     case 2:
       var value = /** @type {string} */ (reader.readString());
       msg.setIssuer(value);
-      break;
-    case 3:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setLat(value);
-      break;
-    case 4:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setLng(value);
       break;
     case 5:
       var value = /** @type {number} */ (reader.readUint64());
@@ -1389,20 +1281,6 @@ proto.core.Movement.serializeBinaryToWriter = function(message, writer) {
   if (f.length > 0) {
     writer.writeString(
       2,
-      f
-    );
-  }
-  f = message.getLat();
-  if (f.length > 0) {
-    writer.writeString(
-      3,
-      f
-    );
-  }
-  f = message.getLng();
-  if (f.length > 0) {
-    writer.writeString(
-      4,
       f
     );
   }
@@ -1463,42 +1341,6 @@ proto.core.Movement.prototype.getIssuer = function() {
  */
 proto.core.Movement.prototype.setIssuer = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
-};
-
-
-/**
- * optional string lat = 3;
- * @return {string}
- */
-proto.core.Movement.prototype.getLat = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.core.Movement} returns this
- */
-proto.core.Movement.prototype.setLat = function(value) {
-  return jspb.Message.setProto3StringField(this, 3, value);
-};
-
-
-/**
- * optional string lng = 4;
- * @return {string}
- */
-proto.core.Movement.prototype.getLng = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.core.Movement} returns this
- */
-proto.core.Movement.prototype.setLng = function(value) {
-  return jspb.Message.setProto3StringField(this, 4, value);
 };
 
 
