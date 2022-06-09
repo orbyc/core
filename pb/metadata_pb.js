@@ -1367,11 +1367,12 @@ proto.core.MovementMetadata.prototype.toObject = function(opt_includeInstance) {
  */
 proto.core.MovementMetadata.toObject = function(includeInstance, msg) {
   var f, obj = {
-    city: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    startDate: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    endDate: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    distance: jspb.Message.getFieldWithDefault(msg, 4, 0),
-    type: jspb.Message.getFieldWithDefault(msg, 5, 0)
+    countryIso3: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    city: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    startDate: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    endDate: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    distance: jspb.Message.getFieldWithDefault(msg, 5, 0),
+    type: jspb.Message.getFieldWithDefault(msg, 6, 0)
   };
 
   if (includeInstance) {
@@ -1410,21 +1411,25 @@ proto.core.MovementMetadata.deserializeBinaryFromReader = function(msg, reader) 
     switch (field) {
     case 1:
       var value = /** @type {string} */ (reader.readString());
-      msg.setCity(value);
+      msg.setCountryIso3(value);
       break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
-      msg.setStartDate(value);
+      msg.setCity(value);
       break;
     case 3:
       var value = /** @type {string} */ (reader.readString());
-      msg.setEndDate(value);
+      msg.setStartDate(value);
       break;
     case 4:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setEndDate(value);
+      break;
+    case 5:
       var value = /** @type {number} */ (reader.readUint32());
       msg.setDistance(value);
       break;
-    case 5:
+    case 6:
       var value = /** @type {!proto.core.MovementMetadata.Transport} */ (reader.readEnum());
       msg.setType(value);
       break;
@@ -1457,38 +1462,45 @@ proto.core.MovementMetadata.prototype.serializeBinary = function() {
  */
 proto.core.MovementMetadata.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getCity();
+  f = message.getCountryIso3();
   if (f.length > 0) {
     writer.writeString(
       1,
       f
     );
   }
-  f = message.getStartDate();
+  f = message.getCity();
   if (f.length > 0) {
     writer.writeString(
       2,
       f
     );
   }
-  f = message.getEndDate();
+  f = message.getStartDate();
   if (f.length > 0) {
     writer.writeString(
       3,
       f
     );
   }
+  f = message.getEndDate();
+  if (f.length > 0) {
+    writer.writeString(
+      4,
+      f
+    );
+  }
   f = message.getDistance();
   if (f !== 0) {
     writer.writeUint32(
-      4,
+      5,
       f
     );
   }
   f = message.getType();
   if (f !== 0.0) {
     writer.writeEnum(
-      5,
+      6,
       f
     );
   }
@@ -1506,10 +1518,10 @@ proto.core.MovementMetadata.Transport = {
 };
 
 /**
- * optional string city = 1;
+ * optional string country_iso3 = 1;
  * @return {string}
  */
-proto.core.MovementMetadata.prototype.getCity = function() {
+proto.core.MovementMetadata.prototype.getCountryIso3 = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
@@ -1518,16 +1530,16 @@ proto.core.MovementMetadata.prototype.getCity = function() {
  * @param {string} value
  * @return {!proto.core.MovementMetadata} returns this
  */
-proto.core.MovementMetadata.prototype.setCity = function(value) {
+proto.core.MovementMetadata.prototype.setCountryIso3 = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
 /**
- * optional string start_date = 2;
+ * optional string city = 2;
  * @return {string}
  */
-proto.core.MovementMetadata.prototype.getStartDate = function() {
+proto.core.MovementMetadata.prototype.getCity = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
@@ -1536,16 +1548,16 @@ proto.core.MovementMetadata.prototype.getStartDate = function() {
  * @param {string} value
  * @return {!proto.core.MovementMetadata} returns this
  */
-proto.core.MovementMetadata.prototype.setStartDate = function(value) {
+proto.core.MovementMetadata.prototype.setCity = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
 /**
- * optional string end_date = 3;
+ * optional string start_date = 3;
  * @return {string}
  */
-proto.core.MovementMetadata.prototype.getEndDate = function() {
+proto.core.MovementMetadata.prototype.getStartDate = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
 
@@ -1554,17 +1566,35 @@ proto.core.MovementMetadata.prototype.getEndDate = function() {
  * @param {string} value
  * @return {!proto.core.MovementMetadata} returns this
  */
-proto.core.MovementMetadata.prototype.setEndDate = function(value) {
+proto.core.MovementMetadata.prototype.setStartDate = function(value) {
   return jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
 /**
- * optional uint32 distance = 4;
+ * optional string end_date = 4;
+ * @return {string}
+ */
+proto.core.MovementMetadata.prototype.getEndDate = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.core.MovementMetadata} returns this
+ */
+proto.core.MovementMetadata.prototype.setEndDate = function(value) {
+  return jspb.Message.setProto3StringField(this, 4, value);
+};
+
+
+/**
+ * optional uint32 distance = 5;
  * @return {number}
  */
 proto.core.MovementMetadata.prototype.getDistance = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 5, 0));
 };
 
 
@@ -1573,16 +1603,16 @@ proto.core.MovementMetadata.prototype.getDistance = function() {
  * @return {!proto.core.MovementMetadata} returns this
  */
 proto.core.MovementMetadata.prototype.setDistance = function(value) {
-  return jspb.Message.setProto3IntField(this, 4, value);
+  return jspb.Message.setProto3IntField(this, 5, value);
 };
 
 
 /**
- * optional Transport type = 5;
+ * optional Transport type = 6;
  * @return {!proto.core.MovementMetadata.Transport}
  */
 proto.core.MovementMetadata.prototype.getType = function() {
-  return /** @type {!proto.core.MovementMetadata.Transport} */ (jspb.Message.getFieldWithDefault(this, 5, 0));
+  return /** @type {!proto.core.MovementMetadata.Transport} */ (jspb.Message.getFieldWithDefault(this, 6, 0));
 };
 
 
@@ -1591,7 +1621,7 @@ proto.core.MovementMetadata.prototype.getType = function() {
  * @return {!proto.core.MovementMetadata} returns this
  */
 proto.core.MovementMetadata.prototype.setType = function(value) {
-  return jspb.Message.setProto3EnumField(this, 5, value);
+  return jspb.Message.setProto3EnumField(this, 6, value);
 };
 
 

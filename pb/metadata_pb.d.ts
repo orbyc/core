@@ -164,6 +164,9 @@ export namespace CertificateMetadata {
 }
 
 export class MovementMetadata extends jspb.Message {
+  getCountryIso3(): string;
+  setCountryIso3(value: string): void;
+
   getCity(): string;
   setCity(value: string): void;
 
@@ -191,6 +194,7 @@ export class MovementMetadata extends jspb.Message {
 
 export namespace MovementMetadata {
   export type AsObject = {
+    countryIso3: string,
     city: string,
     startDate: string,
     endDate: string,
