@@ -121,15 +121,15 @@ export namespace CertificateMetadata {
 }
 
 export class MovementMetadata extends jspb.Message {
-  hasLocation(): boolean;
-  clearLocation(): void;
-  getLocation(): Location | undefined;
-  setLocation(value?: Location): void;
+  hasFrom(): boolean;
+  clearFrom(): void;
+  getFrom(): Location | undefined;
+  setFrom(value?: Location): void;
 
-  hasDuration(): boolean;
-  clearDuration(): void;
-  getDuration(): google_protobuf_timestamp_pb.Timestamp | undefined;
-  setDuration(value?: google_protobuf_timestamp_pb.Timestamp): void;
+  hasTo(): boolean;
+  clearTo(): void;
+  getTo(): Location | undefined;
+  setTo(value?: Location): void;
 
   getDistance(): number;
   setDistance(value: number): void;
@@ -149,8 +149,8 @@ export class MovementMetadata extends jspb.Message {
 
 export namespace MovementMetadata {
   export type AsObject = {
-    location?: Location.AsObject,
-    duration?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    from?: Location.AsObject,
+    to?: Location.AsObject,
     distance: number,
     type: MovementMetadata.TransportMap[keyof MovementMetadata.TransportMap],
   }
@@ -280,8 +280,8 @@ export class Location extends jspb.Message {
   getLng(): string;
   setLng(value: string): void;
 
-  getCountryIso2(): string;
-  setCountryIso2(value: string): void;
+  getCountry(): string;
+  setCountry(value: string): void;
 
   getLocation(): string;
   setLocation(value: string): void;
@@ -305,7 +305,7 @@ export namespace Location {
   export type AsObject = {
     lat: string,
     lng: string,
-    countryIso2: string,
+    country: string,
     location: string,
     date?: google_protobuf_timestamp_pb.Timestamp.AsObject,
   }

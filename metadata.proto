@@ -39,10 +39,10 @@ message MovementMetadata {
         LAND = 3;
     }
 
-    Location location = 1;
-    google.protobuf.Timestamp duration = 4;
-    uint64 distance = 5;
-    Transport type = 6;
+    Location from = 1;
+    Location to = 2;
+    uint64 distance = 3;
+    Transport type = 4;
 }
 
 message AccountMetadata {
@@ -71,7 +71,7 @@ message Link {
 message Location {
     string lat = 1;
     string lng = 2;
-    string country_iso2 = 3;
+    string country = 3;
     string location = 4;
     google.protobuf.Timestamp date = 5;
 }

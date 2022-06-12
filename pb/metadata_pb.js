@@ -1113,10 +1113,10 @@ proto.core.MovementMetadata.prototype.toObject = function(opt_includeInstance) {
  */
 proto.core.MovementMetadata.toObject = function(includeInstance, msg) {
   var f, obj = {
-    location: (f = msg.getLocation()) && proto.core.Location.toObject(includeInstance, f),
-    duration: (f = msg.getDuration()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    distance: jspb.Message.getFieldWithDefault(msg, 5, 0),
-    type: jspb.Message.getFieldWithDefault(msg, 6, 0)
+    from: (f = msg.getFrom()) && proto.core.Location.toObject(includeInstance, f),
+    to: (f = msg.getTo()) && proto.core.Location.toObject(includeInstance, f),
+    distance: jspb.Message.getFieldWithDefault(msg, 3, 0),
+    type: jspb.Message.getFieldWithDefault(msg, 4, 0)
   };
 
   if (includeInstance) {
@@ -1156,18 +1156,18 @@ proto.core.MovementMetadata.deserializeBinaryFromReader = function(msg, reader) 
     case 1:
       var value = new proto.core.Location;
       reader.readMessage(value,proto.core.Location.deserializeBinaryFromReader);
-      msg.setLocation(value);
+      msg.setFrom(value);
       break;
-    case 4:
-      var value = new google_protobuf_timestamp_pb.Timestamp;
-      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
-      msg.setDuration(value);
+    case 2:
+      var value = new proto.core.Location;
+      reader.readMessage(value,proto.core.Location.deserializeBinaryFromReader);
+      msg.setTo(value);
       break;
-    case 5:
+    case 3:
       var value = /** @type {number} */ (reader.readUint64());
       msg.setDistance(value);
       break;
-    case 6:
+    case 4:
       var value = /** @type {!proto.core.MovementMetadata.Transport} */ (reader.readEnum());
       msg.setType(value);
       break;
@@ -1200,7 +1200,7 @@ proto.core.MovementMetadata.prototype.serializeBinary = function() {
  */
 proto.core.MovementMetadata.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getLocation();
+  f = message.getFrom();
   if (f != null) {
     writer.writeMessage(
       1,
@@ -1208,25 +1208,25 @@ proto.core.MovementMetadata.serializeBinaryToWriter = function(message, writer) 
       proto.core.Location.serializeBinaryToWriter
     );
   }
-  f = message.getDuration();
+  f = message.getTo();
   if (f != null) {
     writer.writeMessage(
-      4,
+      2,
       f,
-      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+      proto.core.Location.serializeBinaryToWriter
     );
   }
   f = message.getDistance();
   if (f !== 0) {
     writer.writeUint64(
-      5,
+      3,
       f
     );
   }
   f = message.getType();
   if (f !== 0.0) {
     writer.writeEnum(
-      6,
+      4,
       f
     );
   }
@@ -1244,10 +1244,10 @@ proto.core.MovementMetadata.Transport = {
 };
 
 /**
- * optional Location location = 1;
+ * optional Location from = 1;
  * @return {?proto.core.Location}
  */
-proto.core.MovementMetadata.prototype.getLocation = function() {
+proto.core.MovementMetadata.prototype.getFrom = function() {
   return /** @type{?proto.core.Location} */ (
     jspb.Message.getWrapperField(this, proto.core.Location, 1));
 };
@@ -1257,7 +1257,7 @@ proto.core.MovementMetadata.prototype.getLocation = function() {
  * @param {?proto.core.Location|undefined} value
  * @return {!proto.core.MovementMetadata} returns this
 */
-proto.core.MovementMetadata.prototype.setLocation = function(value) {
+proto.core.MovementMetadata.prototype.setFrom = function(value) {
   return jspb.Message.setWrapperField(this, 1, value);
 };
 
@@ -1266,8 +1266,8 @@ proto.core.MovementMetadata.prototype.setLocation = function(value) {
  * Clears the message field making it undefined.
  * @return {!proto.core.MovementMetadata} returns this
  */
-proto.core.MovementMetadata.prototype.clearLocation = function() {
-  return this.setLocation(undefined);
+proto.core.MovementMetadata.prototype.clearFrom = function() {
+  return this.setFrom(undefined);
 };
 
 
@@ -1275,27 +1275,27 @@ proto.core.MovementMetadata.prototype.clearLocation = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.core.MovementMetadata.prototype.hasLocation = function() {
+proto.core.MovementMetadata.prototype.hasFrom = function() {
   return jspb.Message.getField(this, 1) != null;
 };
 
 
 /**
- * optional google.protobuf.Timestamp duration = 4;
- * @return {?proto.google.protobuf.Timestamp}
+ * optional Location to = 2;
+ * @return {?proto.core.Location}
  */
-proto.core.MovementMetadata.prototype.getDuration = function() {
-  return /** @type{?proto.google.protobuf.Timestamp} */ (
-    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 4));
+proto.core.MovementMetadata.prototype.getTo = function() {
+  return /** @type{?proto.core.Location} */ (
+    jspb.Message.getWrapperField(this, proto.core.Location, 2));
 };
 
 
 /**
- * @param {?proto.google.protobuf.Timestamp|undefined} value
+ * @param {?proto.core.Location|undefined} value
  * @return {!proto.core.MovementMetadata} returns this
 */
-proto.core.MovementMetadata.prototype.setDuration = function(value) {
-  return jspb.Message.setWrapperField(this, 4, value);
+proto.core.MovementMetadata.prototype.setTo = function(value) {
+  return jspb.Message.setWrapperField(this, 2, value);
 };
 
 
@@ -1303,8 +1303,8 @@ proto.core.MovementMetadata.prototype.setDuration = function(value) {
  * Clears the message field making it undefined.
  * @return {!proto.core.MovementMetadata} returns this
  */
-proto.core.MovementMetadata.prototype.clearDuration = function() {
-  return this.setDuration(undefined);
+proto.core.MovementMetadata.prototype.clearTo = function() {
+  return this.setTo(undefined);
 };
 
 
@@ -1312,17 +1312,17 @@ proto.core.MovementMetadata.prototype.clearDuration = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.core.MovementMetadata.prototype.hasDuration = function() {
-  return jspb.Message.getField(this, 4) != null;
+proto.core.MovementMetadata.prototype.hasTo = function() {
+  return jspb.Message.getField(this, 2) != null;
 };
 
 
 /**
- * optional uint64 distance = 5;
+ * optional uint64 distance = 3;
  * @return {number}
  */
 proto.core.MovementMetadata.prototype.getDistance = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 5, 0));
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
 };
 
 
@@ -1331,16 +1331,16 @@ proto.core.MovementMetadata.prototype.getDistance = function() {
  * @return {!proto.core.MovementMetadata} returns this
  */
 proto.core.MovementMetadata.prototype.setDistance = function(value) {
-  return jspb.Message.setProto3IntField(this, 5, value);
+  return jspb.Message.setProto3IntField(this, 3, value);
 };
 
 
 /**
- * optional Transport type = 6;
+ * optional Transport type = 4;
  * @return {!proto.core.MovementMetadata.Transport}
  */
 proto.core.MovementMetadata.prototype.getType = function() {
-  return /** @type {!proto.core.MovementMetadata.Transport} */ (jspb.Message.getFieldWithDefault(this, 6, 0));
+  return /** @type {!proto.core.MovementMetadata.Transport} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
 };
 
 
@@ -1349,7 +1349,7 @@ proto.core.MovementMetadata.prototype.getType = function() {
  * @return {!proto.core.MovementMetadata} returns this
  */
 proto.core.MovementMetadata.prototype.setType = function(value) {
-  return jspb.Message.setProto3EnumField(this, 6, value);
+  return jspb.Message.setProto3EnumField(this, 4, value);
 };
 
 
@@ -2138,7 +2138,7 @@ proto.core.Location.toObject = function(includeInstance, msg) {
   var f, obj = {
     lat: jspb.Message.getFieldWithDefault(msg, 1, ""),
     lng: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    countryIso2: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    country: jspb.Message.getFieldWithDefault(msg, 3, ""),
     location: jspb.Message.getFieldWithDefault(msg, 4, ""),
     date: (f = msg.getDate()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
@@ -2187,7 +2187,7 @@ proto.core.Location.deserializeBinaryFromReader = function(msg, reader) {
       break;
     case 3:
       var value = /** @type {string} */ (reader.readString());
-      msg.setCountryIso2(value);
+      msg.setCountry(value);
       break;
     case 4:
       var value = /** @type {string} */ (reader.readString());
@@ -2241,7 +2241,7 @@ proto.core.Location.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = message.getCountryIso2();
+  f = message.getCountry();
   if (f.length > 0) {
     writer.writeString(
       3,
@@ -2303,10 +2303,10 @@ proto.core.Location.prototype.setLng = function(value) {
 
 
 /**
- * optional string country_iso2 = 3;
+ * optional string country = 3;
  * @return {string}
  */
-proto.core.Location.prototype.getCountryIso2 = function() {
+proto.core.Location.prototype.getCountry = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
 
@@ -2315,7 +2315,7 @@ proto.core.Location.prototype.getCountryIso2 = function() {
  * @param {string} value
  * @return {!proto.core.Location} returns this
  */
-proto.core.Location.prototype.setCountryIso2 = function(value) {
+proto.core.Location.prototype.setCountry = function(value) {
   return jspb.Message.setProto3StringField(this, 3, value);
 };
 
