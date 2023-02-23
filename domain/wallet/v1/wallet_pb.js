@@ -20,7 +20,7 @@ export const GetAddressRequest = proto3.makeMessageType(
 export const GetAddressResponse = proto3.makeMessageType(
   "wallet.v1.GetAddressResponse",
   () => [
-    { no: 1, name: "address", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 1, name: "address", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ],
 );
 

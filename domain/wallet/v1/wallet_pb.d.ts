@@ -31,9 +31,9 @@ export declare class GetAddressRequest extends Message<GetAddressRequest> {
  */
 export declare class GetAddressResponse extends Message<GetAddressResponse> {
   /**
-   * @generated from field: optional string address = 1;
+   * @generated from field: string address = 1;
    */
-  address?: string;
+  address: string;
 
   constructor(data?: PartialMessage<GetAddressResponse>);
 

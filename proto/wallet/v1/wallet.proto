@@ -24,7 +24,7 @@ service WalletService {
 
 message GetAddressRequest {}
 message GetAddressResponse {
-  optional string address = 1;
+  string address = 1;
 }
 
 message SignTransactionRequest {
