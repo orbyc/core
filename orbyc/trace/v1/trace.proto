@@ -1,0 +1,37 @@
+syntax = "proto3";
+package orbyc.trace.v1;
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/duration.proto";
+
+option go_package = "github.com/orbyc/core/domain";
+
+/* METADATA */
+message Trace {
+  enum Type {
+    TYPE_UNSPECIFIED = 0;
+    TYPE_AIR = 1;
+    TYPE_SEA = 2;
+    TYPE_LAND = 3;
+  }
+
+  message Location {
+    string place = 1;
+    optional string lat = 2;
+    optional string lng = 3;
+  }
+
+  Type type = 1;
+  optional Location departure = 2;
+  Location destination = 3;
+
+  optional string description = 4;
+
+  oneof footprint {
+    uint64 co2e = 5; // carbon emissions
+    uint64 co2o = 6; // carbon offset
+  }
+
+  google.protobuf.Timestamp started_at = 7;
+  google.protobuf.Duration duration = 8;
+}

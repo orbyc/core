@@ -1,0 +1,16 @@
+syntax = "proto3";
+package orbyc.certificate.v1;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/orbyc/core/domain";
+
+/* METADATA */
+message Certificate {
+  string name = 1;
+  string description = 2;
+  string issuer = 3;
+  optional string external_reference = 4;
+
+  google.protobuf.Timestamp issued_at = 5;
+}

@@ -1,0 +1,31 @@
+syntax = "proto3";
+package orbyc.asset.v1;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/orbyc/core/domain";
+
+/* METADATA */
+message Asset {
+  message Attribute {
+    string name = 1;
+    string value = 2;
+  }
+
+  string name = 1;
+  string description = 2;
+  string image = 3;
+  string external_url = 4;
+  repeated Attribute attributes = 5;
+
+  oneof footprint {
+    uint64 co2e = 6; // carbon emissions
+    uint64 co2o = 7; // carbon offset
+  }
+
+  repeated string gallery = 8;
+  optional string video = 9;
+
+  google.protobuf.Timestamp created_at = 10;
+  google.protobuf.Timestamp updated_at = 11;
+}
