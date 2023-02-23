@@ -1,4 +1,10 @@
 {
+  "name": "orbyc-core",
+  "version": "4.0.1",
+  "description": "",
+  "keywords": ["orbyc"],
+  "author": "Amaury Diaz",
+  "license": "ISC",
   "devDependencies": {
     "@bufbuild/protobuf": "^1.0.0"
   }
