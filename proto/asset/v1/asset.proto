@@ -1,9 +1,9 @@
 syntax = "proto3";
-package orbyc.asset.v1;
+package asset.v1;
 
 import "google/protobuf/timestamp.proto";
 
-option go_package = "github.com/orbyc/core/domain";
+option go_package = "github.com/orbyc/core/domain/asset/v1;asset";
 
 /* METADATA */
 message Asset {

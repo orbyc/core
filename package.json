@@ -1,0 +1,5 @@
+{
+  "devDependencies": {
+    "@bufbuild/protobuf": "^1.0.0"
+  }
+}

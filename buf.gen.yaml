@@ -6,9 +6,16 @@ managed:
     except:
       - buf.build/googleapis/googleapis
 plugins:
-  - plugin: buf.build/protocolbuffers/go
+  - plugin: go
     out: domain
     opt: paths=source_relative
-  - plugin: buf.build/bufbuild/connect-go
+  - plugin: go-grpc
     out: domain
     opt: paths=source_relative
+  - plugin: buf.build/grpc-ecosystem/gateway
+    out: domain
+    opt: paths=source_relative
+  - plugin: buf.build/grpc-ecosystem/openapiv2
+    out: domain
+  - plugin: buf.build/bufbuild/es
+    out: domain
