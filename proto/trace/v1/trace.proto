@@ -4,7 +4,7 @@ package trace.v1;
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/duration.proto";
 
-option go_package = "trace/v1;trace";
+option go_package = "github.com/orbyc/core/domain/trace/v1;trace";
 
 /* METADATA */
 message Trace {

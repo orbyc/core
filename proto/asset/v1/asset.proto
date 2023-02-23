@@ -3,7 +3,7 @@ package asset.v1;
 
 import "google/protobuf/timestamp.proto";
 
-option go_package = "asset/v1;asset";
+option go_package = "github.com/orbyc/core/domain/asset/v1;asset";
 
 /* METADATA */
 message Asset {

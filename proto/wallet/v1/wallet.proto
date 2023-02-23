@@ -5,7 +5,7 @@ import "google/api/annotations.proto";
 import "google/api/httpbody.proto";
 import "transaction/v1/transaction.proto";
 
-option go_package = "wallet/v1;wallet";
+option go_package = "github.com/orbyc/core/domain/wallet/v1;wallet";
 
 service WalletService {
   rpc GetAddress(GetAddressRequest) returns (GetAddressResponse) {
