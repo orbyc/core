@@ -1,22 +1,18 @@
-RELEASE_VERSION=v$(shell cat package.json | jq --raw-output .version)
+RELEASE_VERSION=$(shell cat package.json | jq --raw-output .version)
+ 
 TARGET_BRANCH=dev
 
 publish:
 	@npm publish
 
-add:
-	@git add .
-
 commit:
-	@git commit -m "release ${RELEASE_VERSION}"
+	@git commit -am "release ${RELEASE_VERSION}"
 
-push:
-	@git push origin ${TARGET_BRANCH}
-
-createtag:
+tag:
 	@git tag ${RELEASE_VERSION}
 
-pushtag:
-	@git push origin ${RELEASE_VERSION}
+push:
+	@git push origin ${TARGET_BRANCH} ${RELEASE_VERSION}
 
-release: publish add commit push createtag pushtag
+release: publish commit tag push
+	 
