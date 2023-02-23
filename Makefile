@@ -1,4 +1,4 @@
-RELEASE_VERSION=$(shell cat package.json | jq --raw-output .version)
+RELEASE_VERSION=v$(shell cat package.json | jq --raw-output .version)
  
 TARGET_BRANCH=dev
 
