@@ -3,7 +3,6 @@ module github.com/orbyc/core
 go 1.19
 
 require (
-	github.com/bufbuild/connect-go v1.5.2
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.15.1
 	google.golang.org/genproto v0.0.0-20230222225845-10f96fb3dbec
 	google.golang.org/grpc v1.53.0

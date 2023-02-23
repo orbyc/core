@@ -3,7 +3,7 @@ package certificate.v1;
 
 import "google/protobuf/timestamp.proto";
 
-option go_package = "github.com/orbyc/core/domain/certificate/v1;certificate";
+option go_package = "certificate/v1;certificate";
 
 /* METADATA */
 message Certificate {

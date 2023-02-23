@@ -7,7 +7,7 @@ import "google/api/httpbody.proto";
 import "google/protobuf/empty.proto";
 import "trace/v1/trace.proto";
 
-option go_package = "github.com/orbyc/core/domain/wallet/v1;wallet";
+option go_package = "wallet/v1;wallet";
 
 service WalletService {
   rpc GetAsset(google.protobuf.Empty) returns (asset.v1.Asset) {}
