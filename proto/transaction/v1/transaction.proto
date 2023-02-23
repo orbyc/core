@@ -1,0 +1,6 @@
+syntax = "proto3";
+package transaction.v1;
+
+option go_package = "github.com/orbyc/core/domain/transaction/v1;transaction";
+
+message Transaction {}
