@@ -5,6 +5,26 @@
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Message, proto3 } from "@bufbuild/protobuf";
+import type { Transaction } from "../../transaction/v1/transaction_pb.js";
+
+/**
+ * @generated from message wallet.v1.GetAddressRequest
+ */
+export declare class GetAddressRequest extends Message<GetAddressRequest> {
+  constructor(data?: PartialMessage<GetAddressRequest>);
+
+  static readonly runtime: typeof proto3;
+  static readonly typeName = "wallet.v1.GetAddressRequest";
+  static readonly fields: FieldList;
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetAddressRequest;
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetAddressRequest;
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetAddressRequest;
+
+  static equals(a: GetAddressRequest | PlainMessage<GetAddressRequest> | undefined, b: GetAddressRequest | PlainMessage<GetAddressRequest> | undefined): boolean;
+}
 
 /**
  * @generated from message wallet.v1.GetAddressResponse
@@ -31,98 +51,103 @@ export declare class GetAddressResponse extends Message<GetAddressResponse> {
 }
 
 /**
- * @generated from message wallet.v1.CreateSignatureRequest
+ * @generated from message wallet.v1.SignTransactionRequest
  */
-export declare class CreateSignatureRequest extends Message<CreateSignatureRequest> {
+export declare class SignTransactionRequest extends Message<SignTransactionRequest> {
   /**
-   * @generated from field: string message = 1;
+   * @generated from field: transaction.v1.Transaction transaction = 1;
    */
-  message: string;
+  transaction?: Transaction;
 
-  constructor(data?: PartialMessage<CreateSignatureRequest>);
+  constructor(data?: PartialMessage<SignTransactionRequest>);
 
   static readonly runtime: typeof proto3;
-  static readonly typeName = "wallet.v1.CreateSignatureRequest";
+  static readonly typeName = "wallet.v1.SignTransactionRequest";
   static readonly fields: FieldList;
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CreateSignatureRequest;
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SignTransactionRequest;
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): CreateSignatureRequest;
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): SignTransactionRequest;
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CreateSignatureRequest;
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): SignTransactionRequest;
 
-  static equals(a: CreateSignatureRequest | PlainMessage<CreateSignatureRequest> | undefined, b: CreateSignatureRequest | PlainMessage<CreateSignatureRequest> | undefined): boolean;
+  static equals(a: SignTransactionRequest | PlainMessage<SignTransactionRequest> | undefined, b: SignTransactionRequest | PlainMessage<SignTransactionRequest> | undefined): boolean;
 }
 
 /**
- * @generated from message wallet.v1.CreateSignatureResponse
+ * @generated from message wallet.v1.SignTransactionResponse
  */
-export declare class CreateSignatureResponse extends Message<CreateSignatureResponse> {
+export declare class SignTransactionResponse extends Message<SignTransactionResponse> {
   /**
    * @generated from field: string signature = 1;
    */
   signature: string;
 
-  constructor(data?: PartialMessage<CreateSignatureResponse>);
+  constructor(data?: PartialMessage<SignTransactionResponse>);
 
   static readonly runtime: typeof proto3;
-  static readonly typeName = "wallet.v1.CreateSignatureResponse";
+  static readonly typeName = "wallet.v1.SignTransactionResponse";
   static readonly fields: FieldList;
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CreateSignatureResponse;
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SignTransactionResponse;
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): CreateSignatureResponse;
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): SignTransactionResponse;
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CreateSignatureResponse;
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): SignTransactionResponse;
 
-  static equals(a: CreateSignatureResponse | PlainMessage<CreateSignatureResponse> | undefined, b: CreateSignatureResponse | PlainMessage<CreateSignatureResponse> | undefined): boolean;
+  static equals(a: SignTransactionResponse | PlainMessage<SignTransactionResponse> | undefined, b: SignTransactionResponse | PlainMessage<SignTransactionResponse> | undefined): boolean;
 }
 
 /**
- * @generated from message wallet.v1.CreateTransactionRequest
+ * @generated from message wallet.v1.PushTransactionRequest
  */
-export declare class CreateTransactionRequest extends Message<CreateTransactionRequest> {
+export declare class PushTransactionRequest extends Message<PushTransactionRequest> {
   /**
-   * @generated from field: string transfer = 1;
+   * @generated from field: transaction.v1.Transaction transaction = 1;
    */
-  transfer: string;
+  transaction?: Transaction;
 
-  constructor(data?: PartialMessage<CreateTransactionRequest>);
+  /**
+   * @generated from field: repeated string authorizations = 2;
+   */
+  authorizations: string[];
+
+  constructor(data?: PartialMessage<PushTransactionRequest>);
 
   static readonly runtime: typeof proto3;
-  static readonly typeName = "wallet.v1.CreateTransactionRequest";
+  static readonly typeName = "wallet.v1.PushTransactionRequest";
   static readonly fields: FieldList;
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CreateTransactionRequest;
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): PushTransactionRequest;
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): CreateTransactionRequest;
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): PushTransactionRequest;
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CreateTransactionRequest;
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): PushTransactionRequest;
 
-  static equals(a: CreateTransactionRequest | PlainMessage<CreateTransactionRequest> | undefined, b: CreateTransactionRequest | PlainMessage<CreateTransactionRequest> | undefined): boolean;
+  static equals(a: PushTransactionRequest | PlainMessage<PushTransactionRequest> | undefined, b: PushTransactionRequest | PlainMessage<PushTransactionRequest> | undefined): boolean;
 }
 
 /**
- * @generated from message wallet.v1.CreateTransactionResponse
+ * @generated from message wallet.v1.PushTransactionResponse
  */
-export declare class CreateTransactionResponse extends Message<CreateTransactionResponse> {
+export declare class PushTransactionResponse extends Message<PushTransactionResponse> {
   /**
    * @generated from field: bool success = 1;
    */
   success: boolean;
 
-  constructor(data?: PartialMessage<CreateTransactionResponse>);
+  constructor(data?: PartialMessage<PushTransactionResponse>);
 
   static readonly runtime: typeof proto3;
-  static readonly typeName = "wallet.v1.CreateTransactionResponse";
+  static readonly typeName = "wallet.v1.PushTransactionResponse";
   static readonly fields: FieldList;
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CreateTransactionResponse;
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): PushTransactionResponse;
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): CreateTransactionResponse;
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): PushTransactionResponse;
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CreateTransactionResponse;
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): PushTransactionResponse;
 
-  static equals(a: CreateTransactionResponse | PlainMessage<CreateTransactionResponse> | undefined, b: CreateTransactionResponse | PlainMessage<CreateTransactionResponse> | undefined): boolean;
+  static equals(a: PushTransactionResponse | PlainMessage<PushTransactionResponse> | undefined, b: PushTransactionResponse | PlainMessage<PushTransactionResponse> | undefined): boolean;
 }
 

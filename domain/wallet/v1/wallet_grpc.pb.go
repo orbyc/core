@@ -8,12 +8,9 @@ package walletv1
 
 import (
 	context "context"
-	v1 "github.com/orbyc/core/domain/asset/v1"
-	v11 "github.com/orbyc/core/domain/trace/v1"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
-	emptypb "google.golang.org/protobuf/types/known/emptypb"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -25,11 +22,9 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type WalletServiceClient interface {
-	GetAsset(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*v1.Asset, error)
-	GetTrace(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*v11.Trace, error)
-	GetAddress(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetAddressResponse, error)
-	CreateSignature(ctx context.Context, in *CreateSignatureRequest, opts ...grpc.CallOption) (*CreateSignatureResponse, error)
-	CreateTransaction(ctx context.Context, in *CreateTransactionRequest, opts ...grpc.CallOption) (*CreateTransactionResponse, error)
+	GetAddress(ctx context.Context, in *GetAddressRequest, opts ...grpc.CallOption) (*GetAddressResponse, error)
+	SignTransaction(ctx context.Context, in *SignTransactionRequest, opts ...grpc.CallOption) (*SignTransactionResponse, error)
+	PushTransaction(ctx context.Context, in *PushTransactionRequest, opts ...grpc.CallOption) (*PushTransactionResponse, error)
 }
 
 type walletServiceClient struct {
@@ -40,25 +35,7 @@ func NewWalletServiceClient(cc grpc.ClientConnInterface) WalletServiceClient {
 	return &walletServiceClient{cc}
 }
 
-func (c *walletServiceClient) GetAsset(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*v1.Asset, error) {
-	out := new(v1.Asset)
-	err := c.cc.Invoke(ctx, "/wallet.v1.WalletService/GetAsset", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *walletServiceClient) GetTrace(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*v11.Trace, error) {
-	out := new(v11.Trace)
-	err := c.cc.Invoke(ctx, "/wallet.v1.WalletService/GetTrace", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *walletServiceClient) GetAddress(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetAddressResponse, error) {
+func (c *walletServiceClient) GetAddress(ctx context.Context, in *GetAddressRequest, opts ...grpc.CallOption) (*GetAddressResponse, error) {
 	out := new(GetAddressResponse)
 	err := c.cc.Invoke(ctx, "/wallet.v1.WalletService/GetAddress", in, out, opts...)
 	if err != nil {
@@ -67,18 +44,18 @@ func (c *walletServiceClient) GetAddress(ctx context.Context, in *emptypb.Empty,
 	return out, nil
 }
 
-func (c *walletServiceClient) CreateSignature(ctx context.Context, in *CreateSignatureRequest, opts ...grpc.CallOption) (*CreateSignatureResponse, error) {
-	out := new(CreateSignatureResponse)
-	err := c.cc.Invoke(ctx, "/wallet.v1.WalletService/CreateSignature", in, out, opts...)
+func (c *walletServiceClient) SignTransaction(ctx context.Context, in *SignTransactionRequest, opts ...grpc.CallOption) (*SignTransactionResponse, error) {
+	out := new(SignTransactionResponse)
+	err := c.cc.Invoke(ctx, "/wallet.v1.WalletService/SignTransaction", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *walletServiceClient) CreateTransaction(ctx context.Context, in *CreateTransactionRequest, opts ...grpc.CallOption) (*CreateTransactionResponse, error) {
-	out := new(CreateTransactionResponse)
-	err := c.cc.Invoke(ctx, "/wallet.v1.WalletService/CreateTransaction", in, out, opts...)
+func (c *walletServiceClient) PushTransaction(ctx context.Context, in *PushTransactionRequest, opts ...grpc.CallOption) (*PushTransactionResponse, error) {
+	out := new(PushTransactionResponse)
+	err := c.cc.Invoke(ctx, "/wallet.v1.WalletService/PushTransaction", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -89,11 +66,9 @@ func (c *walletServiceClient) CreateTransaction(ctx context.Context, in *CreateT
 // All implementations must embed UnimplementedWalletServiceServer
 // for forward compatibility
 type WalletServiceServer interface {
-	GetAsset(context.Context, *emptypb.Empty) (*v1.Asset, error)
-	GetTrace(context.Context, *emptypb.Empty) (*v11.Trace, error)
-	GetAddress(context.Context, *emptypb.Empty) (*GetAddressResponse, error)
-	CreateSignature(context.Context, *CreateSignatureRequest) (*CreateSignatureResponse, error)
-	CreateTransaction(context.Context, *CreateTransactionRequest) (*CreateTransactionResponse, error)
+	GetAddress(context.Context, *GetAddressRequest) (*GetAddressResponse, error)
+	SignTransaction(context.Context, *SignTransactionRequest) (*SignTransactionResponse, error)
+	PushTransaction(context.Context, *PushTransactionRequest) (*PushTransactionResponse, error)
 	mustEmbedUnimplementedWalletServiceServer()
 }
 
@@ -101,20 +76,14 @@ type WalletServiceServer interface {
 type UnimplementedWalletServiceServer struct {
 }
 
-func (UnimplementedWalletServiceServer) GetAsset(context.Context, *emptypb.Empty) (*v1.Asset, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetAsset not implemented")
-}
-func (UnimplementedWalletServiceServer) GetTrace(context.Context, *emptypb.Empty) (*v11.Trace, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetTrace not implemented")
-}
-func (UnimplementedWalletServiceServer) GetAddress(context.Context, *emptypb.Empty) (*GetAddressResponse, error) {
+func (UnimplementedWalletServiceServer) GetAddress(context.Context, *GetAddressRequest) (*GetAddressResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetAddress not implemented")
 }
-func (UnimplementedWalletServiceServer) CreateSignature(context.Context, *CreateSignatureRequest) (*CreateSignatureResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateSignature not implemented")
+func (UnimplementedWalletServiceServer) SignTransaction(context.Context, *SignTransactionRequest) (*SignTransactionResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SignTransaction not implemented")
 }
-func (UnimplementedWalletServiceServer) CreateTransaction(context.Context, *CreateTransactionRequest) (*CreateTransactionResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateTransaction not implemented")
+func (UnimplementedWalletServiceServer) PushTransaction(context.Context, *PushTransactionRequest) (*PushTransactionResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PushTransaction not implemented")
 }
 func (UnimplementedWalletServiceServer) mustEmbedUnimplementedWalletServiceServer() {}
 
@@ -129,44 +98,8 @@ func RegisterWalletServiceServer(s grpc.ServiceRegistrar, srv WalletServiceServe
 	s.RegisterService(&WalletService_ServiceDesc, srv)
 }
 
-func _WalletService_GetAsset_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(emptypb.Empty)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(WalletServiceServer).GetAsset(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/wallet.v1.WalletService/GetAsset",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(WalletServiceServer).GetAsset(ctx, req.(*emptypb.Empty))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _WalletService_GetTrace_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(emptypb.Empty)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(WalletServiceServer).GetTrace(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/wallet.v1.WalletService/GetTrace",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(WalletServiceServer).GetTrace(ctx, req.(*emptypb.Empty))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _WalletService_GetAddress_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(emptypb.Empty)
+	in := new(GetAddressRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -178,43 +111,43 @@ func _WalletService_GetAddress_Handler(srv interface{}, ctx context.Context, dec
 		FullMethod: "/wallet.v1.WalletService/GetAddress",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(WalletServiceServer).GetAddress(ctx, req.(*emptypb.Empty))
+		return srv.(WalletServiceServer).GetAddress(ctx, req.(*GetAddressRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _WalletService_CreateSignature_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateSignatureRequest)
+func _WalletService_SignTransaction_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SignTransactionRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(WalletServiceServer).CreateSignature(ctx, in)
+		return srv.(WalletServiceServer).SignTransaction(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/wallet.v1.WalletService/CreateSignature",
+		FullMethod: "/wallet.v1.WalletService/SignTransaction",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(WalletServiceServer).CreateSignature(ctx, req.(*CreateSignatureRequest))
+		return srv.(WalletServiceServer).SignTransaction(ctx, req.(*SignTransactionRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _WalletService_CreateTransaction_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateTransactionRequest)
+func _WalletService_PushTransaction_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PushTransactionRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(WalletServiceServer).CreateTransaction(ctx, in)
+		return srv.(WalletServiceServer).PushTransaction(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/wallet.v1.WalletService/CreateTransaction",
+		FullMethod: "/wallet.v1.WalletService/PushTransaction",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(WalletServiceServer).CreateTransaction(ctx, req.(*CreateTransactionRequest))
+		return srv.(WalletServiceServer).PushTransaction(ctx, req.(*PushTransactionRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -227,24 +160,16 @@ var WalletService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*WalletServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "GetAsset",
-			Handler:    _WalletService_GetAsset_Handler,
-		},
-		{
-			MethodName: "GetTrace",
-			Handler:    _WalletService_GetTrace_Handler,
-		},
-		{
 			MethodName: "GetAddress",
 			Handler:    _WalletService_GetAddress_Handler,
 		},
 		{
-			MethodName: "CreateSignature",
-			Handler:    _WalletService_CreateSignature_Handler,
+			MethodName: "SignTransaction",
+			Handler:    _WalletService_SignTransaction_Handler,
 		},
 		{
-			MethodName: "CreateTransaction",
-			Handler:    _WalletService_CreateTransaction_Handler,
+			MethodName: "PushTransaction",
+			Handler:    _WalletService_PushTransaction_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

@@ -40,12 +40,12 @@
     },
     "/sign": {
       "get": {
-        "operationId": "WalletService_CreateSignature",
+        "operationId": "WalletService_SignTransaction",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1CreateSignatureResponse"
+              "$ref": "#/definitions/v1SignTransactionResponse"
             }
           },
           "default": {
@@ -55,27 +55,19 @@
             }
           }
         },
-        "parameters": [
-          {
-            "name": "message",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          }
-        ],
         "tags": [
           "WalletService"
         ]
       }
     },
-    "/tx": {
-      "post": {
-        "operationId": "WalletService_CreateTransaction",
+    "/transaction": {
+      "put": {
+        "operationId": "WalletService_PushTransaction",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1CreateTransactionResponse"
+              "$ref": "#/definitions/v1PushTransactionResponse"
             }
           },
           "default": {
@@ -91,7 +83,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/v1CreateTransactionRequest"
+              "$ref": "#/definitions/v1PushTransactionRequest"
             }
           }
         ],
@@ -102,17 +94,6 @@
     }
   },
   "definitions": {
-    "AssetAttribute": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string"
-        },
-        "value": {
-          "type": "string"
-        }
-      }
-    },
     "protobufAny": {
       "type": "object",
       "properties": {
@@ -142,81 +123,6 @@
         }
       }
     },
-    "v1Asset": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string"
-        },
-        "description": {
-          "type": "string"
-        },
-        "image": {
-          "type": "string"
-        },
-        "externalUrl": {
-          "type": "string"
-        },
-        "attributes": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/AssetAttribute"
-          }
-        },
-        "co2e": {
-          "type": "string",
-          "format": "uint64",
-          "title": "carbon emissions"
-        },
-        "co2o": {
-          "type": "string",
-          "format": "uint64",
-          "title": "carbon offset"
-        },
-        "gallery": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "video": {
-          "type": "string"
-        },
-        "createdAt": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "updatedAt": {
-          "type": "string",
-          "format": "date-time"
-        }
-      },
-      "title": "METADATA"
-    },
-    "v1CreateSignatureResponse": {
-      "type": "object",
-      "properties": {
-        "signature": {
-          "type": "string"
-        }
-      }
-    },
-    "v1CreateTransactionRequest": {
-      "type": "object",
-      "properties": {
-        "transfer": {
-          "type": "string"
-        }
-      }
-    },
-    "v1CreateTransactionResponse": {
-      "type": "object",
-      "properties": {
-        "success": {
-          "type": "boolean"
-        }
-      }
-    },
     "v1GetAddressResponse": {
       "type": "object",
       "properties": {
@@ -225,64 +131,38 @@
         }
       }
     },
-    "v1Trace": {
+    "v1PushTransactionRequest": {
       "type": "object",
       "properties": {
-        "type": {
-          "$ref": "#/definitions/v1TraceType"
+        "transaction": {
+          "$ref": "#/definitions/v1Transaction"
         },
-        "departure": {
-          "$ref": "#/definitions/v1TraceLocation"
-        },
-        "destination": {
-          "$ref": "#/definitions/v1TraceLocation"
-        },
-        "description": {
-          "type": "string"
-        },
-        "co2e": {
-          "type": "string",
-          "format": "uint64",
-          "title": "carbon emissions"
-        },
-        "co2o": {
-          "type": "string",
-          "format": "uint64",
-          "title": "carbon offset"
-        },
-        "startedAt": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "duration": {
-          "type": "string"
+        "authorizations": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         }
-      },
-      "title": "METADATA"
+      }
     },
-    "v1TraceLocation": {
+    "v1PushTransactionResponse": {
       "type": "object",
       "properties": {
-        "place": {
-          "type": "string"
-        },
-        "lat": {
-          "type": "string"
-        },
-        "lng": {
+        "success": {
+          "type": "boolean"
+        }
+      }
+    },
+    "v1SignTransactionResponse": {
+      "type": "object",
+      "properties": {
+        "signature": {
           "type": "string"
         }
       }
     },
-    "v1TraceType": {
-      "type": "string",
-      "enum": [
-        "TYPE_UNSPECIFIED",
-        "TYPE_AIR",
-        "TYPE_SEA",
-        "TYPE_LAND"
-      ],
-      "default": "TYPE_UNSPECIFIED"
+    "v1Transaction": {
+      "type": "object"
     }
   }
 }

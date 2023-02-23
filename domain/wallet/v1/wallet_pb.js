@@ -4,6 +4,15 @@
 // @ts-nocheck
 
 import { proto3 } from "@bufbuild/protobuf";
+import { Transaction } from "../../transaction/v1/transaction_pb.js";
+
+/**
+ * @generated from message wallet.v1.GetAddressRequest
+ */
+export const GetAddressRequest = proto3.makeMessageType(
+  "wallet.v1.GetAddressRequest",
+  [],
+);
 
 /**
  * @generated from message wallet.v1.GetAddressResponse
@@ -16,40 +25,41 @@ export const GetAddressResponse = proto3.makeMessageType(
 );
 
 /**
- * @generated from message wallet.v1.CreateSignatureRequest
+ * @generated from message wallet.v1.SignTransactionRequest
  */
-export const CreateSignatureRequest = proto3.makeMessageType(
-  "wallet.v1.CreateSignatureRequest",
+export const SignTransactionRequest = proto3.makeMessageType(
+  "wallet.v1.SignTransactionRequest",
   () => [
-    { no: 1, name: "message", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: "transaction", kind: "message", T: Transaction },
   ],
 );
 
 /**
- * @generated from message wallet.v1.CreateSignatureResponse
+ * @generated from message wallet.v1.SignTransactionResponse
  */
-export const CreateSignatureResponse = proto3.makeMessageType(
-  "wallet.v1.CreateSignatureResponse",
+export const SignTransactionResponse = proto3.makeMessageType(
+  "wallet.v1.SignTransactionResponse",
   () => [
     { no: 1, name: "signature", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ],
 );
 
 /**
- * @generated from message wallet.v1.CreateTransactionRequest
+ * @generated from message wallet.v1.PushTransactionRequest
  */
-export const CreateTransactionRequest = proto3.makeMessageType(
-  "wallet.v1.CreateTransactionRequest",
+export const PushTransactionRequest = proto3.makeMessageType(
+  "wallet.v1.PushTransactionRequest",
   () => [
-    { no: 1, name: "transfer", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: "transaction", kind: "message", T: Transaction },
+    { no: 2, name: "authorizations", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
   ],
 );
 
 /**
- * @generated from message wallet.v1.CreateTransactionResponse
+ * @generated from message wallet.v1.PushTransactionResponse
  */
-export const CreateTransactionResponse = proto3.makeMessageType(
-  "wallet.v1.CreateTransactionResponse",
+export const PushTransactionResponse = proto3.makeMessageType(
+  "wallet.v1.PushTransactionResponse",
   () => [
     { no: 1, name: "success", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
   ],
