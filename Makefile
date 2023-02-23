@@ -1,3 +1,5 @@
+RELEASE_VERSION=v$(shell cat package.json | jq --raw-output .version)
+
 publish:
 	@npm publish
 
@@ -8,7 +10,7 @@ commit:
 	@git commit -m "release ${RELEASE_VERSION}"
 
 push:
-	@git push origin master
+	@git push origin dev
 
 createtag:
 	@git tag ${RELEASE_VERSION}
