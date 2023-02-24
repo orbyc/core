@@ -1,43 +1,84 @@
 syntax = "proto3";
 package wallet.v1;
 
+import "asset/v1/asset.proto";
 import "google/api/annotations.proto";
 import "google/api/httpbody.proto";
+import "google/protobuf/empty.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
 import "transaction/v1/transaction.proto";
 
 option go_package = "github.com/orbyc/core/domain/wallet/v1;wallet";
+option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
+  info: {
+    title: "Wallet Service";
+    version: "1.0";
+    description: "Provides blockchain interaction API";
+    contact: {
+      name: "orbyc Core";
+      url: "github.com/orbyc/core";
+      email: "support@orbyc.com";
+    };
+  };
+  security_definitions: {
+    security: {
+      key: "ApiKeyAuth";
+      value: {
+        type: TYPE_API_KEY;
+        in: IN_HEADER;
+        name: "Authorization";
+      };
+    };
+  };
+  security: {
+    security_requirement: {
+      key: "ApiKeyAuth";
+      value: {};
+    };
+  };
+  schemes: HTTPS;
+};
 
 service WalletService {
-  rpc GetAddress(GetAddressRequest) returns (GetAddressResponse) {
+  rpc GetAddress(google.protobuf.Empty) returns (GetAddressResponse) {
     option (google.api.http) = {get: "/address"};
   }
-  rpc SignTransaction(SignTransactionRequest) returns (SignTransactionResponse) {
-    option (google.api.http) = {get: "/sign"};
+  rpc GetMetadata(GetMetadataRequest) returns (asset.v1.Asset) {
+    option (google.api.http) = {get: "/metadata/{id}"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      security: {};
+    };
   }
-  rpc PushTransaction(PushTransactionRequest) returns (PushTransactionResponse) {
+  rpc GetSignature(GetSignatureRequest) returns (GetSignatureResponse) {
+    option (google.api.http) = {get: "/signature/{message}"};
+  }
+  rpc SendTransaction(SendTransactionRequest) returns (SendTransactionResponse) {
     option (google.api.http) = {
-      put: "/transaction",
+      post: "/transaction",
       body: "*"
     };
   }
 }
 
-message GetAddressRequest {}
 message GetAddressResponse {
   string address = 1;
 }
 
-message SignTransactionRequest {
-  transaction.v1.Transaction transaction = 1;
+message GetMetadataRequest {
+  string id = 1;
 }
-message SignTransactionResponse {
+
+message GetSignatureRequest {
+  string message = 1;
+}
+message GetSignatureResponse {
   string signature = 1;
 }
 
-message PushTransactionRequest {
+message SendTransactionRequest {
   transaction.v1.Transaction transaction = 1;
   repeated string authorizations = 2;
 }
-message PushTransactionResponse {
+message SendTransactionResponse {
   bool success = 1;
 }

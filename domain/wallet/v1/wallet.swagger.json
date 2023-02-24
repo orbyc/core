@@ -1,13 +1,22 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "wallet/v1/wallet.proto",
-    "version": "version not set"
+    "title": "Wallet Service",
+    "description": "Provides blockchain interaction API",
+    "version": "1.0",
+    "contact": {
+      "name": "orbyc Core",
+      "url": "github.com/orbyc/core",
+      "email": "support@orbyc.com"
+    }
   },
   "tags": [
     {
       "name": "WalletService"
     }
+  ],
+  "schemes": [
+    "https"
   ],
   "consumes": [
     "application/json"
@@ -38,14 +47,14 @@
         ]
       }
     },
-    "/sign": {
+    "/metadata/{id}": {
       "get": {
-        "operationId": "WalletService_SignTransaction",
+        "operationId": "WalletService_GetMetadata",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1SignTransactionResponse"
+              "$ref": "#/definitions/v1Asset"
             }
           },
           "default": {
@@ -55,19 +64,58 @@
             }
           }
         },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "WalletService"
+        ],
+        "security": []
+      }
+    },
+    "/signature/{message}": {
+      "get": {
+        "operationId": "WalletService_GetSignature",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetSignatureResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "message",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
         "tags": [
           "WalletService"
         ]
       }
     },
     "/transaction": {
-      "put": {
-        "operationId": "WalletService_PushTransaction",
+      "post": {
+        "operationId": "WalletService_SendTransaction",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1PushTransactionResponse"
+              "$ref": "#/definitions/v1SendTransactionResponse"
             }
           },
           "default": {
@@ -83,7 +131,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/v1PushTransactionRequest"
+              "$ref": "#/definitions/v1SendTransactionRequest"
             }
           }
         ],
@@ -94,6 +142,17 @@
     }
   },
   "definitions": {
+    "AssetAttribute": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        }
+      }
+    },
     "protobufAny": {
       "type": "object",
       "properties": {
@@ -118,10 +177,63 @@
         "details": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/protobufAny"
           }
         }
       }
+    },
+    "v1Asset": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "image": {
+          "type": "string"
+        },
+        "externalUrl": {
+          "type": "string"
+        },
+        "attributes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/AssetAttribute"
+          }
+        },
+        "co2e": {
+          "type": "string",
+          "format": "uint64",
+          "title": "carbon emissions"
+        },
+        "co2o": {
+          "type": "string",
+          "format": "uint64",
+          "title": "carbon offset"
+        },
+        "gallery": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "video": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "title": "METADATA"
     },
     "v1GetAddressResponse": {
       "type": "object",
@@ -131,7 +243,15 @@
         }
       }
     },
-    "v1PushTransactionRequest": {
+    "v1GetSignatureResponse": {
+      "type": "object",
+      "properties": {
+        "signature": {
+          "type": "string"
+        }
+      }
+    },
+    "v1SendTransactionRequest": {
       "type": "object",
       "properties": {
         "transaction": {
@@ -145,7 +265,7 @@
         }
       }
     },
-    "v1PushTransactionResponse": {
+    "v1SendTransactionResponse": {
       "type": "object",
       "properties": {
         "success": {
@@ -153,16 +273,20 @@
         }
       }
     },
-    "v1SignTransactionResponse": {
-      "type": "object",
-      "properties": {
-        "signature": {
-          "type": "string"
-        }
-      }
-    },
     "v1Transaction": {
       "type": "object"
     }
-  }
+  },
+  "securityDefinitions": {
+    "ApiKeyAuth": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header"
+    }
+  },
+  "security": [
+    {
+      "ApiKeyAuth": []
+    }
+  ]
 }
