@@ -8,7 +8,6 @@ package walletv1
 
 import (
 	v11 "github.com/orbyc/core/domain/asset/v1"
-	_ "github.com/orbyc/core/domain/protoc-gen-openapiv2/options"
 	v1 "github.com/orbyc/core/domain/transaction/v1"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	_ "google.golang.org/genproto/googleapis/api/httpbody"
