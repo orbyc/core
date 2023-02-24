@@ -7,6 +7,7 @@
 package walletv1
 
 import (
+	_ "github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2/options"
 	v11 "github.com/orbyc/core/domain/asset/v1"
 	v1 "github.com/orbyc/core/domain/transaction/v1"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
