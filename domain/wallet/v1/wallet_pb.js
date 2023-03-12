@@ -7,6 +7,38 @@ import { proto3 } from "@bufbuild/protobuf";
 import { Transaction } from "../../transaction/v1/transaction_pb.js";
 
 /**
+ * @generated from message wallet.v1.Wallet
+ */
+export const Wallet = proto3.makeMessageType(
+  "wallet.v1.Wallet",
+  () => [
+    { no: 1, name: "account", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "collections", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "message", T: Wallet_Collection} },
+    { no: 3, name: "contacts", kind: "message", T: Wallet_Contact, repeated: true },
+  ],
+);
+
+/**
+ * @generated from message wallet.v1.Wallet.Contact
+ */
+export const Wallet_Contact = proto3.makeMessageType(
+  "wallet.v1.Wallet.Contact",
+  [],
+  {localName: "Wallet_Contact"},
+);
+
+/**
+ * @generated from message wallet.v1.Wallet.Collection
+ */
+export const Wallet_Collection = proto3.makeMessageType(
+  "wallet.v1.Wallet.Collection",
+  () => [
+    { no: 1, name: "assets", kind: "scalar", T: 4 /* ScalarType.UINT64 */, repeated: true },
+  ],
+  {localName: "Wallet_Collection"},
+);
+
+/**
  * @generated from message wallet.v1.GetAddressResponse
  */
 export const GetAddressResponse = proto3.makeMessageType(

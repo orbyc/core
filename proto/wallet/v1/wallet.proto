@@ -39,6 +39,18 @@ option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
   schemes: HTTPS;
 };
 
+message Wallet {
+  message Contact {}
+
+  message Collection {
+    repeated uint64 assets = 1;
+  }
+
+  string account = 1;
+  map<string, Collection> collections = 2;
+  repeated Contact contacts = 3;
+}
+
 service WalletService {
   rpc GetAddress(google.protobuf.Empty) returns (GetAddressResponse) {
     option (google.api.http) = {get: "/address"};

@@ -8,6 +8,83 @@ import { Message, proto3 } from "@bufbuild/protobuf";
 import type { Transaction } from "../../transaction/v1/transaction_pb.js";
 
 /**
+ * @generated from message wallet.v1.Wallet
+ */
+export declare class Wallet extends Message<Wallet> {
+  /**
+   * @generated from field: string account = 1;
+   */
+  account: string;
+
+  /**
+   * @generated from field: map<string, wallet.v1.Wallet.Collection> collections = 2;
+   */
+  collections: { [key: string]: Wallet_Collection };
+
+  /**
+   * @generated from field: repeated wallet.v1.Wallet.Contact contacts = 3;
+   */
+  contacts: Wallet_Contact[];
+
+  constructor(data?: PartialMessage<Wallet>);
+
+  static readonly runtime: typeof proto3;
+  static readonly typeName = "wallet.v1.Wallet";
+  static readonly fields: FieldList;
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Wallet;
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Wallet;
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Wallet;
+
+  static equals(a: Wallet | PlainMessage<Wallet> | undefined, b: Wallet | PlainMessage<Wallet> | undefined): boolean;
+}
+
+/**
+ * @generated from message wallet.v1.Wallet.Contact
+ */
+export declare class Wallet_Contact extends Message<Wallet_Contact> {
+  constructor(data?: PartialMessage<Wallet_Contact>);
+
+  static readonly runtime: typeof proto3;
+  static readonly typeName = "wallet.v1.Wallet.Contact";
+  static readonly fields: FieldList;
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Wallet_Contact;
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Wallet_Contact;
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Wallet_Contact;
+
+  static equals(a: Wallet_Contact | PlainMessage<Wallet_Contact> | undefined, b: Wallet_Contact | PlainMessage<Wallet_Contact> | undefined): boolean;
+}
+
+/**
+ * @generated from message wallet.v1.Wallet.Collection
+ */
+export declare class Wallet_Collection extends Message<Wallet_Collection> {
+  /**
+   * @generated from field: repeated uint64 assets = 1;
+   */
+  assets: bigint[];
+
+  constructor(data?: PartialMessage<Wallet_Collection>);
+
+  static readonly runtime: typeof proto3;
+  static readonly typeName = "wallet.v1.Wallet.Collection";
+  static readonly fields: FieldList;
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Wallet_Collection;
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Wallet_Collection;
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Wallet_Collection;
+
+  static equals(a: Wallet_Collection | PlainMessage<Wallet_Collection> | undefined, b: Wallet_Collection | PlainMessage<Wallet_Collection> | undefined): boolean;
+}
+
+/**
  * @generated from message wallet.v1.GetAddressResponse
  */
 export declare class GetAddressResponse extends Message<GetAddressResponse> {
