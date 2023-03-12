@@ -20,3 +20,5 @@ plugins:
     out: domain
   - plugin: buf.build/bufbuild/es
     out: domain
+  - plugin: buf.build/apple/swift
+    out: domain
